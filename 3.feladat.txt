@@ -1,0 +1,19 @@
+1. feladat:
+	select user.name from user left join user_car on user_car.user=user.id where user_car.car is null  and user.name like 'Kis%'
+2. feladat: 
+	select user.name from user inner join user_car on user_car.user=user.id group by user.name having count(user.name)>=2
+2.1 feladat:
+	select user.name, GROUP_CONCAT(car.brand,' ',car.model SEPARATOR ', ') cars from user
+ inner join user_car on user_car.user=user.id inner join car on user_car.car=car.id group by
+ user.name having count(user.name)>=2
+
+3. feladat:
+	ALTER TABLE user ADD nem tinyint;
+	ALTER TABLE user ADD szemelyi_igazolvany_szam int;
+4. feladat: 
+	INSERT INTO `car`(`brand`, `model`) VALUES ("Volkswagen","Arteon")
+5. feladat:
+	UPDATE `car` SET `model`="fiesta" WHERE model = "focus";
+6. feladat:
+	INSERT INTO user_car (select distinct user.id, 8 from user left join user_car on user.id=user_car.user where
+	(user.name like '%r%' or user.name like '%o%') and user.id<10);
